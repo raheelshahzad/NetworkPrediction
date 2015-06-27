@@ -12,6 +12,14 @@ double Matrix::eucledeanDistance() const {
 	return sqrt(distance);
 }
 
+void Matrix::weightedAdd(double weight, const Matrix& ohter) {
+	for (table::const_iterator it = other.map_.begin(); it != map_.end(); ++it) {
+		const auto& key = it->first;
+		const double x = weight * it->second;
+		setValue(key, getValue(key) + x);
+	}
+}
+
 double Matrix::eucledeanDistance(const Matrix &other) const {
 	double distance = 0.0;
 	for (table::const_iterator it = map_.begin(); it != map_.end(); ++it) {
